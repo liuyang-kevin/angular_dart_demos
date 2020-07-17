@@ -1,0 +1,38 @@
+<h1>路由模式</h1>
+<hero-list></hero-list>
+<hr>
+<h1>{{title}}</h1>
+<p>模版模式进入，component注解中使用templateUrl</p>
+<h2>{{hero.name}}</h2>
+<div><label>id: </label>{{hero.id}}</div>
+<div>
+    <label>name: </label>
+    <input [(ngModel)]="hero.name" placeholder="name">
+</div>
+
+<!-- x04 template -->
+<hr />
+<h1>x04 template</h1>
+<div>
+    <p>使用变量存储的被选中数据对象</p>
+    <!-- 这里没有使用初始化，所以执行的时候需要if一下null -->
+    <div *ngIf="selected != null">
+        <h2>{{selected.name}}</h2>
+        <div><label>id: </label>{{selected.id}}</div>
+        <div>
+            <label>name: </label>
+            <input [(ngModel)]="selected.name" placeholder="name">
+        </div>
+    </div>
+    <ul class="heroes">
+        <!-- *ngFor 数据绑定 for指令（directive）循环绑定的数据对象 -->
+        <!-- coreDirectives 需要追加给Component注解 -->
+        <li *ngFor="let hero of heroes" 
+        [class.selected]="hero === selected"
+        (click)="onSelect(hero)">
+            <span class="badge">{{hero.id}}</span> {{hero.name}}
+        </li>
+    </ul>
+    <p>下面这个选中详情，就是使用子组件输出的</p>
+    <my-hero [hero]="selected"></my-hero>
+</div>

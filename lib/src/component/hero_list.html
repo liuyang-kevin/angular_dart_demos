@@ -1,0 +1,10 @@
+<ul class="heroes">
+    <!-- *ngFor 数据绑定 for指令（directive）循环绑定的数据对象 -->
+    <!-- coreDirectives 需要追加给Component注解 -->
+    <li *ngFor="let hero of heroes" 
+    [class.selected]="hero === selected"
+    (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+    </li>
+</ul>
+<my-hero [hero]="selected"></my-hero>
